@@ -4,7 +4,7 @@ Classic Memory Game developed in ReactJS + Typescript for educational purpose.
 
 Currently this project is focused in desktop view.
 
-You can see the project running [here]()
+You can see the project running [here](https://memo-game-reactjs.netlify.app/)
 
 ![Memoji Game](./src/mockup/mock.png)
 
