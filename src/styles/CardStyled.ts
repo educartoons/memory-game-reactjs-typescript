@@ -25,6 +25,11 @@ const CardStyled = styled.div`
       user-select: none;
     }
   }
+  &.matched {
+    .back {
+      background-color: #8bc968;
+    }
+  }
 `;
 
 export default CardStyled;

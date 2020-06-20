@@ -1,20 +1,31 @@
-import React from "react";
-import Grid from "../Grid";
+import React, { useState } from "react";
 
-import { GameProvider } from "../../providers/GameProvider";
+import Grid from "../Grid";
 
 import WrapperStyled from "../../styles/WrapperStyled";
 import GlobalStyles from "../../styles/GlobalStyles";
 
 const Application = () => {
+  const [win, setWin] = useState(false);
+  const handleWin = () => {
+    setWin(true);
+  };
   return (
     <>
-      <GameProvider>
-        <GlobalStyles />
-        <WrapperStyled>
-          <Grid />
-        </WrapperStyled>
-      </GameProvider>
+      <GlobalStyles />
+      <WrapperStyled>
+        <h2>Memoji Game</h2>
+        <Grid handleWin={handleWin} />
+        {win}
+        {win && (
+          <p>
+            You win{" "}
+            <span role="img" aria-label="party">
+              🎉
+            </span>
+          </p>
+        )}
+      </WrapperStyled>
     </>
   );
 };

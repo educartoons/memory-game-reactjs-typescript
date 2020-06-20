@@ -1,26 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import emoji from "node-emoji";
 
 import { useSpring, animated } from "react-spring";
 
-import { GameContext, IGameContext } from "../../providers/GameProvider";
-
 import CardStyled from "../../styles/CardStyled";
+import { ICard } from "../Grid";
 
 interface IProps {
-  emojiName: string;
+  card: ICard;
+  id: number;
+  handleFlipCard: (id: number) => void;
 }
 
 const Card = (props: IProps) => {
-  const [flipped, setFlipped] = useState(false);
-  const [marked, setMarked] = useState(false);
-  const gameContext: IGameContext = useContext(GameContext);
-  const { cardOne, cardTwo } = gameContext.state;
-  const { setCardOne, setCardTwo, resetCards } = gameContext.actions;
-
   const { transform, opacity } = useSpring({
-    opacity: flipped ? 1 : 0,
-    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
+    opacity: props.card.flipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${props.card.flipped ? 180 : 0}deg)`,
     config: {
       mass: 5,
       tension: 500,
@@ -28,36 +23,11 @@ const Card = (props: IProps) => {
     }
   });
 
-  const handleFlip = () => {
-    if (marked === false && flipped === false && cardTwo === null) {
-      if (cardOne === null) {
-        setCardOne(props.emojiName);
-        setFlipped(true);
-      } else if (cardTwo === null) {
-        setCardTwo(props.emojiName);
-        setFlipped(true);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (marked === false && cardTwo !== null) {
-      if (cardOne === cardTwo) {
-        if (props.emojiName === cardTwo) {
-          setMarked(true);
-          resetCards();
-        }
-      } else {
-        setTimeout(() => {
-          setFlipped(false);
-          resetCards();
-        }, 1000);
-      }
-    }
-  }, [cardTwo, marked, cardOne, setMarked, resetCards, props.emojiName]);
-
   return (
-    <CardStyled onClick={handleFlip}>
+    <CardStyled
+      className={props.card.marked ? "matched" : ""}
+      onClick={() => props.handleFlipCard(props.id)}
+    >
       <animated.div
         className="front absolute"
         style={{
@@ -72,7 +42,7 @@ const Card = (props: IProps) => {
           transform: transform.interpolate((t: any) => `${t} rotateX(180deg)`)
         }}
       >
-        <span>{emoji.get(props.emojiName)}</span>
+        <span>{emoji.get(props.card.emojiName)}</span>
       </animated.div>
     </CardStyled>
   );
