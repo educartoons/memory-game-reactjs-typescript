@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactGA from "react-ga";
 
 import Grid from "../Grid";
 
@@ -10,6 +11,10 @@ const Application = () => {
   const handleWin = () => {
     setWin(true);
   };
+  useEffect(() => {
+    ReactGA.initialize("UA-170172978-1");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <>
       <GlobalStyles />
