@@ -16,7 +16,6 @@ const Application = () => {
       <WrapperStyled>
         <h2>Memoji Game</h2>
         <Grid handleWin={handleWin} />
-        {win}
         {win && (
           <p>
             You win{" "}
@@ -26,6 +25,12 @@ const Application = () => {
           </p>
         )}
       </WrapperStyled>
+      <footer style={{ marginTop: "3em", textAlign: "center" }}>
+        Created with ❤️ by{" "}
+        <a target="_blank" href="https://eduarruben.com">
+          eduarruben.com
+        </a>
+      </footer>
     </>
   );
 };
