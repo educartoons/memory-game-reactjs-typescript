@@ -6,7 +6,7 @@ Currently this project is focused in desktop view.
 
 You can see the project running [here]()
 
-![Memoji Game](./mockup/mock.png)
+![Memoji Game](./src/mockup/mock.png)
 
 ## Installation 
 
