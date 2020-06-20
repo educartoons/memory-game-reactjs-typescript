@@ -26,8 +26,16 @@ const Application = () => {
         )}
       </WrapperStyled>
       <footer style={{ marginTop: "3em", textAlign: "center" }}>
-        Created with ❤️ by{" "}
-        <a target="_blank" href="https://eduarruben.com">
+        Created with{" "}
+        <span role="img" aria-label="heart icon">
+          ❤️
+        </span>{" "}
+        by{" "}
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://eduarruben.com"
+        >
           eduarruben.com
         </a>
       </footer>
